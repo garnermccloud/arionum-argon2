@@ -426,7 +426,7 @@ int encode_string(char *dst, size_t dst_len, argon2_context *ctx,
     SX(ctx->lanes);
 
     SS("$");*/
-    SS("$argon2i$v=19$m=16384,t=4,p=4$")
+    SS("$argon2i$v=19$m=16384,t=4,p=4$");
     /*10700+  : SS("$argon2i$v=19$m=524288,t=1,p=1$")*/
     SB(ctx->salt, ctx->saltlen);
 
