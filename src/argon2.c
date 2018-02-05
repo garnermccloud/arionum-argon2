@@ -42,9 +42,11 @@ int argon2_ctx(argon2_context *context) {
     /*memory_blocks = context->m_cost;*/
 
     segment_length = 1024;
+    /*post 10800: segment_length = 131072;*/
     /*segment_length = memory_blocks / (context->lanes * ARGON2_SYNC_POINTS);*/
     /* Ensure that all segments have equal length */
     memory_blocks = 16384;
+    /*post 10800: memory_blocks = 524288;*/
     /*memory_blocks = segment_length * (context->lanes * ARGON2_SYNC_POINTS);*/
 
     instance.version = context->version;
@@ -53,6 +55,7 @@ int argon2_ctx(argon2_context *context) {
     instance.memory_blocks = memory_blocks;
     instance.segment_length = segment_length;
     instance.lane_length = 4096; /*segment_length * ARGON2_SYNC_POINTS;**/
+    /*post 10800: instance.lane_length = 524288;*/
     instance.lanes = context->lanes;
     instance.threads = context->threads;
     instance.type = Argon2_i;
@@ -110,6 +113,11 @@ int argon2_hash(const void *pwd,
     context.m_cost = 16384;
     context.lanes = 4;
     context.threads = 4;
+    /*after 10800: context.t_cost = 1;
+    context.m_cost = 524288;
+    context.lanes = 1;
+    context.threads = 1;*/
+    context.allocate_cbk = NULL;
     context.allocate_cbk = NULL;
     context.free_cbk = NULL;
     context.flags = ARGON2_DEFAULT_FLAGS;

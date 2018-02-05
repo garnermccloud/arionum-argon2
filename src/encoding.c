@@ -400,19 +400,19 @@ int encode_string(char *dst, size_t dst_len, argon2_context *ctx,
         dst_len -= sb_len;                                                     \
     } while ((void)0, 0)
 
-    const char* type_string = argon2_type2string(0);
+    /*const char* type_string = argon2_type2string(0);*/
     int validation_result = validate_inputs(ctx);
 
-    if (!type_string) {
+    /*if (!type_string) {
       return ARGON2_ENCODING_FAIL;
-    }
+    }*/
 
     if (validation_result != ARGON2_OK) {
       return validation_result;
     }
 
 
-    SS("$");
+    /*SS("$");
     SS(type_string);
 
     SS("$v=");
@@ -425,7 +425,9 @@ int encode_string(char *dst, size_t dst_len, argon2_context *ctx,
     SS(",p=");
     SX(ctx->lanes);
 
-    SS("$");
+    SS("$");*/
+    SS("$argon2i$v=19$m=16384,t=4,p=4$")
+    /*10700+  : SS("$argon2i$v=19$m=524288,t=1,p=1$")*/
     SB(ctx->salt, ctx->saltlen);
 
     SS("$");
