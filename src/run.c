@@ -129,9 +129,8 @@ static void run(uint32_t outlen, char *pwd, size_t pwdlen, char *salt, uint32_t 
         fatal("could not allocate memory for hash");
     }
 
-    result = argon2_hash(t_cost, m_cost, threads, pwd, pwdlen, salt, saltlen,
-                         out, outlen, encoded, encodedlen, type,
-                         version);
+    result = argon2_hash(pwd, pwdlen, salt, saltlen,
+                         out, outlen, encoded, encodedlen);
     if (result != ARGON2_OK)
         fatal(argon2_error_message(result));
 
@@ -313,7 +312,7 @@ int main(int argc, char *argv[]) {
         fatal("cannot provide both -e and -r");
 
     if(!encoded_only && !raw_only) {
-        printf("Type:\t\t%s\n", argon2_type2string(type, 1));
+        printf("Type:\t\t%s\n", argon2_type2string(1));
         printf("Iterations:\t%u\n", t_cost);
         printf("Memory:\t\t%u KiB\n", m_cost);
         printf("Parallelism:\t%u\n", lanes);

@@ -59,8 +59,6 @@ Usage:  ./argon2 [-h] salt [-i|-d|-id] [-t iterations] [-m memory] [-p paralleli
 Parameters:
         salt            The salt to use, at least 8 characters
         -i              Use Argon2i (this is the default)
-        -d              Use Argon2d instead of Argon2i
-        -id             Use Argon2id instead of Argon2i
         -t N            Sets the number of iterations to N (default = 3)
         -m N            Sets the memory usage of 2^N KiB (default 12)
         -p N            Sets parallelism to N threads (default 1)

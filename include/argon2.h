@@ -234,14 +234,14 @@ typedef enum Argon2_version {
  * @param uppercase Whether the string should have the first letter uppercase
  * @return NULL if invalid type, otherwise the string representation.
  */
-ARGON2_PUBLIC const char *argon2_type2string(argon2_type type, int uppercase);
+ARGON2_PUBLIC const char *argon2_type2string(int uppercase);
 
 /*
  * Function that performs memory-hard hashing with certain degree of parallelism
  * @param  context  Pointer to the Argon2 internal structure
  * @return Error code if smth is wrong, ARGON2_OK otherwise
  */
-ARGON2_PUBLIC int argon2_ctx(argon2_context *context, argon2_type type);
+ARGON2_PUBLIC int argon2_ctx(argon2_context *context);
 
 /**
  * Hashes a password with Argon2i, producing an encoded hash
@@ -287,13 +287,11 @@ ARGON2_PUBLIC int argon2i_hash_raw(const uint32_t t_cost, const uint32_t m_cost,
                                    const size_t hashlen);
 
 /* generic function underlying the above ones */
-ARGON2_PUBLIC int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
-                              const uint32_t parallelism, const void *pwd,
+ARGON2_PUBLIC int argon2_hash(const void *pwd,
                               const size_t pwdlen, const void *salt,
                               const size_t saltlen, void *hash,
                               const size_t hashlen, char *encoded,
-                              const size_t encodedlen, argon2_type type,
-                              const uint32_t version);
+                              const size_t encodedlen);
 
 /**
  * Verifies a password against an encoded string

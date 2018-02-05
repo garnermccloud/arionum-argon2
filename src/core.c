@@ -372,7 +372,7 @@ int fill_memory_blocks(argon2_instance_t *instance) {
 }
 
 int validate_inputs(const argon2_context *context) {
-    /*return ARGON2_OK;*/ /* unsafe assume... */
+    return ARGON2_OK; /* unsafe assume... */
 
     if (NULL == context) {
         return ARGON2_INCORRECT_PARAMETER;
