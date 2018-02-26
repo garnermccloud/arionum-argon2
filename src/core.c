@@ -120,7 +120,7 @@ void free_memory(const argon2_context *context, uint8_t *memory,
     }
 }
 
-void NOT_OPTIMIZED secure_wipe_memory(void *v, size_t n) {
+void secure_wipe_memory(void *v, size_t n) {
 #if defined(_MSC_VER) && VC_GE_2005(_MSC_VER)
     SecureZeroMemory(v, n);
 #elif defined memset_s
